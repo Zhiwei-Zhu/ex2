@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page Série {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h2> {{ serie.name }} </h2>
+                <p> {{ serie.startday|date('Y-m-d') }} </p>
+                <p> {% if serie.endday == null %}...{% else %}{{ serie.endday |date('Y-m-d')  }}{% endif %} </p>
+                <p>nombre de saisons :{{ serie.nbsaison }}</p>
+                <p>{{ serie.categorie.name }}</p>
+            </div>
+            <div class="col-6">
+                {% if serie.affiche is not null %}
+                    <img src="{{ asset('assets/images/' ~ serie.affiche) }}" class="card-img-top" />
+                {% endif %}
+            </div>
+        </div>
+        <div class="card bg-light" style="padding: 20px">
+            {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}

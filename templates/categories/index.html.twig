@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div>
+        <h2>Séries</h2>
+        <p>Nombre de Séries:{{ series|length }}</p>
+        <a href="{{ path('series') }}" class="btn btn-primary">Toutes les séries</a>
+    </div>
+    <div>
+        <h2>Catégrories</h2>
+        <div class="card bg-light" style="padding: 20px">
+            {{ form(form) }}
+        </div>
+        <p>Nombre de Catégories:{{ categories|length }}</p>
+        <ul class="list-group">
+            {% if categories|length > 0 %}
+            {% for categorie in categories %}
+            <li class="list-group-item"><a href="{{ path('categorie',{id: categorie.id}) }}">{{ categorie.name }}</a><div>nombre de série dans la catégorie: {{ categorie.series |length }}</div><a href="{{path("remove1", {id: categorie.id})}}" class="btn btn-danger">Supprimer</a></li>
+            {% endfor %}
+            {% else %}
+            <p>il n'y a pas encore de catégorie</p>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
